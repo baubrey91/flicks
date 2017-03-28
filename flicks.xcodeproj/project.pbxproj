@@ -377,6 +377,7 @@
 				CA75D3091E8AC805003ACBB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
