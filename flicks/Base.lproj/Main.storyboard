@@ -121,12 +121,16 @@
             </objects>
             <point key="canvasLocation" x="981.60000000000002" y="746.17691154422789"/>
         </scene>
-        <!--View Controller-->
+        <!--Movies Table View Controller-->
         <scene sceneID="FAW-7j-vXB">
             <objects>
-                <viewController id="ZIS-3h-MFc" sceneMemberID="viewController">
+                <viewController id="ZIS-3h-MFc" customClass="MoviesTableViewController" customModule="flicks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mYr-nO-dOh"/>
+                        <viewControllerLayoutGuide type="bottom" id="YKp-Yq-QR7"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xXX-xg-aue">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="570"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dji-Aa-p3h">
@@ -134,15 +138,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="Mz8-R3-m05">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ldt-jq-e81" customClass="MovieCell" customModule="flicks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mz8-R3-m05" id="vhT-o3-R62">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ldt-jq-e81" id="Y9F-mN-Xdx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JdJ-q1-wV9">
-                                                    <rect key="frame" x="8" y="8" width="103" height="103"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXj-RA-pyh">
+                                                    <rect key="frame" x="8" y="8" width="130" height="103"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -156,10 +160,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAQ-1y-AAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2997.5999999999999" y="292.35382308845578"/>
+            <point key="canvasLocation" x="3085.5999999999999" y="363.41829085457272"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5nH-Oc-EUH"/>
+        <segue reference="DmR-aX-dkN"/>
     </inferredMetricsTieBreakers>
 </document>
