@@ -12,8 +12,8 @@ import AFNetworking
 class MoviesTableViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var moviesArray: [NSDictionary]?;
-    var filteredMoviesArray: [NSDictionary]?
+    var moviesArray = [Movie]()
+    var filteredMoviesArray = [Movie]()
 
     var imageUrl: NSURL!
     
@@ -42,60 +42,45 @@ class MoviesTableViewController: UIViewController {
         
         let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: {(dataOrNil, response, error) in
             if let data = dataOrNil {
-                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary{//, let results = responseDictionary["title"] as? NSDictionary{
-                    print(responseDictionary["results"]!)
-                    self.moviesArray = responseDictionary["results"] as? [NSDictionary]
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary{
+                    let payLoad = responseDictionary["results"] as? [NSDictionary]
+                    //print(payLoad)
+                    for m in payLoad! {
+                        let mm = Movie(dict: m)
+                        self.moviesArray.append(mm)
+
+                    }
                     self.filteredMoviesArray = self.moviesArray
 
                     self.tableView.reloadData()
-                    print(self.moviesArray)
                 }
             }
             
         });
         task.resume()
     }
-    
-    func getJSON(_ url: String, completionHandler: @escaping ((_ json: AnyObject) -> Void)) {
-        let nsURL = URL(string: url)!
-        let session = URLSession.shared
-        let task = session.dataTask(with: nsURL, completionHandler: { data, response, error -> Void in
-            if error != nil{
-                completionHandler(error as AnyObject)
-            }
-            if data != nil {
-                let jsonData = (try! JSONSerialization.jsonObject( with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! [String:Any]
-                
-                completionHandler(jsonData as AnyObject)
-            }
-            session.invalidateAndCancel()
-        })
-        task.resume()
-    }
-
 }
 
 extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = self.moviesArray?.count else{
-            return 3
-        }
-        return count
+        return moviesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieCell
-        if let movie = filteredMoviesArray?[indexPath.row]{
-        cell.movieTitle.text = movie["title"] as? String//posts?[indexPath.row]["blog_name"] as! String
-        cell.movieDescription.text = movie["overview"] as? String
+        let movie = filteredMoviesArray[indexPath.row]
+        cell.movieTitle.text = movie.title as? String//posts?[indexPath.row]["blog_name"] as! String
+        cell.movieTitle.sizeToFit()
+        cell.movieDescription.text = movie.description as? String
+        cell.movieDescription.sizeToFit()
         let baseUrl = "http://image.tmdb.org/t/p/w342"
         
-        if let posterPath = movie["poster_path"] as? String {
+        if let posterPath = movie.posterPath {
             
             imageUrl = NSURL(string: baseUrl + posterPath)
             fadeInImageRequest(poster: cell.posterImage)
             }
-        }
+        
         
         return cell
     }
