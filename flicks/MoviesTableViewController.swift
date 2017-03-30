@@ -8,7 +8,7 @@
 
 import UIKit
 import AFNetworking
-
+import MBProgressHUD
 
 class MoviesTableViewController: UIViewController {
     
@@ -52,7 +52,8 @@ class MoviesTableViewController: UIViewController {
                                  delegate: nil,
                                  delegateQueue: OperationQueue.main
         )
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
         let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: {(dataOrNil, response, error) in
             if error != nil {
                 print(error)
@@ -68,8 +69,8 @@ class MoviesTableViewController: UIViewController {
                         let mm = Movie(dict: m)
                         self.moviesArray.append(mm)
                     }
+                    MBProgressHUD.hide(for: self.view, animated: true)
                     self.tableView.reloadData()
-                    
                     refreshControl.endRefreshing()
                     
                 }
@@ -90,7 +91,8 @@ class MoviesTableViewController: UIViewController {
                                  delegate: nil,
                                  delegateQueue: OperationQueue.main
         )
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
         let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: {(dataOrNil, response, error) in
             if error != nil {
                 print(error)
@@ -104,6 +106,7 @@ class MoviesTableViewController: UIViewController {
                         let mm = Movie(dict: m)
                         self.moviesArray.append(mm)
                     }
+                    MBProgressHUD.hide(for: self.view, animated: true)
                     self.filteredMoviesArray = self.moviesArray
                     self.tableView.reloadData()
                 }
@@ -148,7 +151,6 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
             // image response will be nil if image is cached
             
             if imageResponse != nil {
-                print("Image was NOT cached, fade in image")
                 poster.alpha = 0.0
                 
                 
@@ -157,13 +159,11 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
                     poster.alpha = 3.0
                 })
             } else {
-                print ("Image was cached so just update the image")
                 poster.image = image
             }
         },
                             failure: {(imageRequest, imageResponse, error) -> Void in
                                 
-                                print("Failure to get image")
                                 
         })
         
