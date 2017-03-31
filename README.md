@@ -22,7 +22,7 @@ Completed user stories:
  
 Notes:
 
-Spent some time making the UI work across multiple phone resolutions by playing around with the RelativeLayout.
+Had a lot of layout issues.
 
 Walkthrough of all user stories:
 
