@@ -64,7 +64,6 @@ class MoviesTableViewController: UIViewController {
                                  delegate: nil,
                                  delegateQueue: OperationQueue.main
         )
-        //MBProgressHUD.showAdded(to: self.view, animated: true)
         KRProgressHUD.show()
 
 
@@ -76,14 +75,13 @@ class MoviesTableViewController: UIViewController {
 
             }
             if let data = dataOrNil {
-                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,                     let payLoad = responseDictionary["results"] as? [NSDictionary]
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary, let payLoad = responseDictionary["results"] as? [NSDictionary]
                 {
                     //NSLog("response: \(responseDictionary)")
                     for m in payLoad {
                         let mm = Movie(dict: m)
                         self.moviesArray.append(mm)
                     }
-                    //MBProgressHUD.hide(for: self.view, animated: true)
                     self.collectionView.reloadData()
                     self.tableView.reloadData()
                     refreshControl.endRefreshing()
@@ -183,7 +181,6 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
             imageUrl = NSURL(string: baseUrl + posterPath)
             fadeInImageRequest(poster: cell.posterImage)
             }
-        
         
         return cell
     }
