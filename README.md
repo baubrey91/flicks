@@ -17,7 +17,7 @@ Completed user stories:
  * [x] Optional: All images fade in as they are loading.
  * [ ] Optional: For the large poster, load the low-res image first and switch to high-res when complete.
  * [ ] Optional: Customize the highlight and selection effect of the cell.
- * [ ] Optional:Customize the navigation bar.
+ * [ ] Optional: Customize the navigation bar.
 
  
 Notes:
@@ -29,3 +29,5 @@ Walkthrough of all user stories:
 ![Video Walkthrough](anim_rotten_tomatoes.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+Icons provided by https://icons8.com
