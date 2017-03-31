@@ -12,42 +12,51 @@ import KRProgressHUD
 
 class MoviesTableViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var networkErrorView: UIView!
+    @IBOutlet weak var tableView:           UITableView!
+    @IBOutlet weak var collectionView:      UICollectionView!
+    @IBOutlet weak var networkErrorView:    UIView!
+    
+    var endpoint = "now_playing"
     
     let apiKey = "5bf0547b7de4003cc2d3f7365471ee39"
+    let baseUrl = "http://image.tmdb.org/t/p/w342"
+
     var moviesArray = [Movie]()
     var filteredMoviesArray = [Movie]()
-    var delegate: tcDelegate? = nil
-    var connectionString: String = ""
-    var url: URL?
+    
+    lazy var searchBar = UISearchBar(frame: CGRect(0, 0, 200, 20))
+
 
     var imageUrl: NSURL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.placeholder = "Search"
+        
+        navigationItem.titleView = searchBar
+        searchBar.delegate = self
+        searchBar.resignFirstResponder()
+        searchBar.keyboardType = UIKeyboardType.alphabet
+
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(callService(refreshControl:)), for: UIControlEvents.valueChanged)
         
         tableView.insertSubview(refreshControl, at: 0)
+        collectionView.insertSubview(refreshControl, at: 0)
         
         callService()
         filteredMoviesArray = moviesArray
 
         tableView.reloadData()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-         url = URL(string: (connectionString) + (apiKey))
-    }
     
     func callService(refreshControl: UIRefreshControl) {
         
         networkErrorView.isHidden = true
 
-        //let apiKey = "5bf0547b7de4003cc2d3f7365471ee39"
-        //let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = URLRequest(url: url!,
                                  cachePolicy: .reloadIgnoringLocalCacheData,
                                  timeoutInterval: 10)
@@ -75,6 +84,7 @@ class MoviesTableViewController: UIViewController {
                         self.moviesArray.append(mm)
                     }
                     //MBProgressHUD.hide(for: self.view, animated: true)
+                    self.collectionView.reloadData()
                     self.tableView.reloadData()
                     refreshControl.endRefreshing()
                     KRProgressHUD.dismiss()
@@ -91,7 +101,7 @@ class MoviesTableViewController: UIViewController {
         networkErrorView.isHidden = true
 
         let apiKey = "5bf0547b7de4003cc2d3f7365471ee39"
-        let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+        let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: URLSessionConfiguration.default,
                                  delegate: nil,
@@ -115,6 +125,7 @@ class MoviesTableViewController: UIViewController {
                     }
                    // MBProgressHUD.hide(for: self.view, animated: true)
                     KRProgressHUD.dismiss()
+                    self.collectionView.reloadData()
                     self.filteredMoviesArray = self.moviesArray
                     self.tableView.reloadData()
                 }
@@ -122,9 +133,39 @@ class MoviesTableViewController: UIViewController {
         });
         task.resume()
     }
+    
+    @IBAction func sementController(_ sender: UISegmentedControl) {
+        
+        collectionView.isHidden = ((sender.selectedSegmentIndex == 0) ? true : false)
+    }
+}
+
+extension MoviesTableViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        //movieDataSource.filter = ""
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredMoviesArray = []
+        for movie in moviesArray {
+            if movie.title.contains(searchText){
+                filteredMoviesArray.append(movie)
+            }
+        }
+        if searchText == "" {
+            filteredMoviesArray = moviesArray
+        }
+        collectionView.reloadData()
+        tableView.reloadData()
+    }
 }
 
 extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredMoviesArray.count
     }
@@ -136,7 +177,6 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
         cell.movieTitle.sizeToFit()
         cell.movieDescription.text = movie.description as? String
         cell.movieDescription.sizeToFit()
-        let baseUrl = "http://image.tmdb.org/t/p/w342"
         
         if let posterPath = movie.posterPath {
             
@@ -146,6 +186,14 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
         
         
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "movieDetailViewController") as! MovieDetailViewController
+        vc.movie = filteredMoviesArray[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func fadeInImageRequest(poster: UIImageView) {
@@ -169,12 +217,33 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
             
         })
     }
+}
+
+extension MoviesTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "movieDetailViewController") as! MovieDetailViewController
-        vc.movie = moviesArray[indexPath.row]
+        vc.movie = filteredMoviesArray[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filteredMoviesArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
+        let movie = filteredMoviesArray[indexPath.row]
+        cell.movieTitle.sizeToFit()
+        cell.movieTitle.text = movie.title as? String
+        
+        if let posterPath = movie.posterPath {
+            
+            imageUrl = NSURL(string: baseUrl + posterPath)
+            fadeInImageRequest(poster: cell.posterImage)
+        }
+        return cell
+    }
+
 }
 
