@@ -15,6 +15,7 @@
 		CA75D2FE1E8AC805003ACBB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA75D2FC1E8AC805003ACBB6 /* Main.storyboard */; };
 		CA75D3001E8AC805003ACBB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA75D2FF1E8AC805003ACBB6 /* Assets.xcassets */; };
 		CA75D3031E8AC805003ACBB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA75D3011E8AC805003ACBB6 /* LaunchScreen.storyboard */; };
+		CAC1DD411E8F34670010E318 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC1DD401E8F34670010E318 /* MapKit.framework */; };
 		CAE1C4EB1E8B12F800BB1FA5 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE1C4EA1E8B12F800BB1FA5 /* MovieCell.swift */; };
 		D15F224402E5CCD7B3841E28 /* Pods_flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2422B00A738429D113F0F1B /* Pods_flicks.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		CA75D2FF1E8AC805003ACBB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA75D3021E8AC805003ACBB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA75D3041E8AC805003ACBB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAC1DD401E8F34670010E318 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CAE1C4EA1E8B12F800BB1FA5 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC1DD411E8F34670010E318 /* MapKit.framework in Frameworks */,
 				D15F224402E5CCD7B3841E28 /* Pods_flicks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,6 +80,7 @@
 		C25FDE03B0EF512AD23E4C83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAC1DD401E8F34670010E318 /* MapKit.framework */,
 				C2422B00A738429D113F0F1B /* Pods_flicks.framework */,
 			);
 			name = Frameworks;

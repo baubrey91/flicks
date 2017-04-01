@@ -12,11 +12,12 @@ class Movie {
     var title : String
     var description: String
     var posterPath : String?
+    var filmDate : String
     
     init(dict: NSDictionary){
-        self.title = dict["title"] as! String
-        self.description = dict["overview"] as! String
-        self.posterPath = dict["poster_path"] as? String ?? ""
-
+        self.title          = dict["title"] as! String
+        self.description    = dict["overview"] as! String
+        self.posterPath     = dict["poster_path"] as? String ?? ""
+        self.filmDate       = dict["release_date"] as! String
     }
 }

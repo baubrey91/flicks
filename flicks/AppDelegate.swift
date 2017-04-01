@@ -25,13 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let VC1 = VC1Nav.topViewController as! MoviesTableViewController
         VC1.endpoint = "now_playing"
         VC1Nav.tabBarItem.title = "Now Playing"
-        VC1Nav.tabBarItem.image = UIImage(named: "now_playing")
+        VC1Nav.tabBarItem.image = UIImage(named: "Ticket_Icon")
         
         let VC2Nav = storyboard.instantiateViewController(withIdentifier: "myNavController") as! UINavigationController
         let VC2 = VC2Nav.topViewController as! MoviesTableViewController
         VC2.endpoint = "top_rated"
         VC2Nav.tabBarItem.title = "Top Rated"
-        VC2Nav.tabBarItem.image = UIImage(named: "top_rated")
+        VC2Nav.tabBarItem.image = UIImage(named: "Trophy_Icon")
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [VC1Nav, VC2Nav]
@@ -67,3 +67,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension UIImage {
+    
+    func scaleImage(toSize newSize: CGSize) -> UIImage? {
+        let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+        if let context = UIGraphicsGetCurrentContext() {
+            context.interpolationQuality = .high
+            let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: newSize.height)
+            context.concatenate(flipVertical)
+            context.draw(self.cgImage!, in: newRect)
+            let newImage = UIImage(cgImage: context.makeImage()!)
+            UIGraphicsEndImageContext()
+            return newImage
+        }
+        return nil
+    }
+}

@@ -97,7 +97,7 @@ class MoviesTableViewController: UIViewController {
     func callService() {
     
         networkErrorView.isHidden = true
-
+        
         let apiKey = "5bf0547b7de4003cc2d3f7365471ee39"
         let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
         let request = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
@@ -105,7 +105,6 @@ class MoviesTableViewController: UIViewController {
                                  delegate: nil,
                                  delegateQueue: OperationQueue.main
         )
-        //MBProgressHUD.showAdded(to: self.view, animated: true)
 
         let task : URLSessionDataTask = session.dataTask(with: request,completionHandler: {(dataOrNil, response, error) in
             if error != nil {
@@ -116,12 +115,10 @@ class MoviesTableViewController: UIViewController {
             if let data = dataOrNil {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary,
                     let payLoad = responseDictionary["results"] as? [NSDictionary]{
-                    //print(payLoad)
                     for m in payLoad {
                         let mm = Movie(dict: m)
                         self.moviesArray.append(mm)
                     }
-                   // MBProgressHUD.hide(for: self.view, animated: true)
                     KRProgressHUD.dismiss()
                     self.collectionView.reloadData()
                     self.filteredMoviesArray = self.moviesArray
@@ -136,14 +133,29 @@ class MoviesTableViewController: UIViewController {
         
         collectionView.isHidden = ((sender.selectedSegmentIndex == 0) ? true : false)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tableViewSegue" {
+            let vc = segue.destination as! MovieDetailViewController
+            let indexPath = tableView.indexPath(for: sender as! MovieCell)!
+            vc.movie = filteredMoviesArray[indexPath.row]
+        }
+        if segue.identifier == "collectionViewSegue" {
+            let vc = segue.destination as! MovieDetailViewController
+            let indexPath = collectionView.indexPath(for: sender as! MovieCollectionViewCell)!
+            vc.movie = filteredMoviesArray[indexPath.row]
+        }
+    }
 }
 
 extension MoviesTableViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        //movieDataSource.filter = ""
-        searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
     }
     
@@ -185,14 +197,6 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "movieDetailViewController") as! MovieDetailViewController
-        vc.movie = filteredMoviesArray[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func fadeInImageRequest(poster: UIImageView) {
         
         
@@ -217,13 +221,7 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension MoviesTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "movieDetailViewController") as! MovieDetailViewController
-        vc.movie = filteredMoviesArray[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredMoviesArray.count
     }
@@ -231,8 +229,8 @@ extension MoviesTableViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
         let movie = filteredMoviesArray[indexPath.row]
-        cell.movieTitle.sizeToFit()
         cell.movieTitle.text = movie.title as? String
+        cell.movieTitle.sizeToFit()
         
         if let posterPath = movie.posterPath {
             

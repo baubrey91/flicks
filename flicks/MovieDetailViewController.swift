@@ -10,10 +10,11 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
-    @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var MovieDescription: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var movieTitle:          UILabel!
+    @IBOutlet weak var MovieDescription:    UILabel!
+    @IBOutlet weak var scrollView:          UIScrollView!
+    @IBOutlet weak var posterImage:         UIImageView!
+    @IBOutlet weak var filmDate:            UILabel!
     
     var movie: Movie?
     
@@ -21,7 +22,8 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         movieTitle.text = movie?.title
         MovieDescription.text = movie?.description
-
+        filmDate.text = movie?.filmDate
+        
         if let pp = movie?.posterPath{
             let baseUrl = "http://image.tmdb.org/t/p/w342\(pp)"
             let imageUrl = NSURL(string: baseUrl)
@@ -29,7 +31,7 @@ class MovieDetailViewController: UIViewController {
         }
         
         let contentWidth = scrollView.bounds.width
-        let contentHeight = scrollView.bounds.height * 3
+        let contentHeight = scrollView.bounds.height * 1.5
         scrollView.contentSize = CGSize(contentWidth, contentHeight)
 
         // Do any additional setup after loading the view.
