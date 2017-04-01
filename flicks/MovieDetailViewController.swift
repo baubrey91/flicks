@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 class MovieDetailViewController: UIViewController {
 
@@ -17,6 +18,8 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var filmDate:            UILabel!
     
     var movie: Movie?
+    var lowResBase  = "https://image.tmdb.org/t/p/w45"
+    var highResBase = "https://image.tmdb.org/t/p/original"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +28,10 @@ class MovieDetailViewController: UIViewController {
         filmDate.text = movie?.filmDate
         
         if let pp = movie?.posterPath{
-            let baseUrl = "http://image.tmdb.org/t/p/w342\(pp)"
-            let imageUrl = NSURL(string: baseUrl)
-            posterImage.setImageWith(imageUrl! as URL)
+            let lowURL = "\(lowResBase)\(pp)"
+            let highURL = "\(highResBase)\(pp)"
+
+            posterImage.loadImagesLowHigh(low: lowURL, high: highURL)
         }
         
         let contentWidth = scrollView.bounds.width
@@ -40,34 +44,5 @@ class MovieDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension CGRect{
-    init(_ x:CGFloat,_ y:CGFloat,_ width:CGFloat,_ height:CGFloat) {
-        self.init(x:x,y:y,width:width,height:height)
-    }
-    
-}
-extension CGSize{
-    init(_ width:CGFloat,_ height:CGFloat) {
-        self.init(width:width,height:height)
-    }
-}
-extension CGPoint{
-    init(_ x:CGFloat,_ y:CGFloat) {
-        self.init(x:x,y:y)
     }
 }

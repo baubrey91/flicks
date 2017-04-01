@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         VC2Nav.tabBarItem.image = UIImage(named: "Trophy_Icon")
         
         let tabBarController = UITabBarController()
+        tabBarController.tabBar.barTintColor = UIColor.black
         tabBarController.viewControllers = [VC1Nav, VC2Nav]
         
         window?.rootViewController = tabBarController

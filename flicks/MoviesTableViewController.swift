@@ -129,8 +129,7 @@ class MoviesTableViewController: UIViewController {
         task.resume()
     }
     
-    @IBAction func sementController(_ sender: UISegmentedControl) {
-        
+    @IBAction func segmentController(_ sender: UISegmentedControl) {
         collectionView.isHidden = ((sender.selectedSegmentIndex == 0) ? true : false)
     }
     
@@ -153,7 +152,6 @@ extension MoviesTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
-
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -168,9 +166,14 @@ extension MoviesTableViewController: UISearchBarDelegate {
         }
         if searchText == "" {
             filteredMoviesArray = moviesArray
+            perform(#selector(hideKeyboardWithSearchBar(bar:)), with:searchBar, afterDelay:0)
         }
         collectionView.reloadData()
         tableView.reloadData()
+    }
+    
+    func hideKeyboardWithSearchBar(bar:UISearchBar) {
+        bar.resignFirstResponder()
     }
 }
 
@@ -191,32 +194,11 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
         if let posterPath = movie.posterPath {
             
             imageUrl = NSURL(string: baseUrl + posterPath)
-            fadeInImageRequest(poster: cell.posterImage)
+            cell.posterImage.fadeInImageRequest(imgURL: imageUrl)
+            //fadeInImageRequest(poster: cell.posterImage)
             }
         
         return cell
-    }
-    
-    func fadeInImageRequest(poster: UIImageView) {
-        
-        
-        let imageRequest = URLRequest(url: imageUrl as URL)
-        
-        poster.setImageWith(imageRequest as URLRequest, placeholderImage: nil, success: {( imageRequest, imageResponse, image) -> Void in
-            
-            if imageResponse != nil {
-                poster.alpha = 0.0
-                
-                poster.image = image
-                UIView.animate(withDuration: 2.0, animations: { () -> Void in
-                    poster.alpha = 3.0
-                })
-            } else {
-                poster.image = image
-            }
-        }, failure: {(imageRequest, imageResponse, error) -> Void in
-            
-        })
     }
 }
 
@@ -233,9 +215,8 @@ extension MoviesTableViewController: UICollectionViewDelegate, UICollectionViewD
         cell.movieTitle.sizeToFit()
         
         if let posterPath = movie.posterPath {
-            
             imageUrl = NSURL(string: baseUrl + posterPath)
-            fadeInImageRequest(poster: cell.posterImage)
+            cell.posterImage.fadeInImageRequest(imgURL: imageUrl)
         }
         return cell
     }
