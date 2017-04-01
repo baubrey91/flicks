@@ -13,7 +13,7 @@ Completed user stories:
  * [x] Required: User can pull to refresh the movie list.
  * [x] Optional: Add a tab bar for Now Playing or Top Rated movies.
  * [x] Optional: Implement a UISegmentedControl to switch between a list view and a grid view.
- * [ ] Optional: Add a search bar.
+ * [x] Optional: Add a search bar.
  * [x] Optional: All images fade in as they are loading.
  * [ ] Optional: For the large poster, load the low-res image first and switch to high-res when complete.
  * [ ] Optional: Customize the highlight and selection effect of the cell.
