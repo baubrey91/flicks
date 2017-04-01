@@ -138,6 +138,8 @@ class MoviesTableViewController: UIViewController {
             let vc = segue.destination as! MovieDetailViewController
             let indexPath = tableView.indexPath(for: sender as! MovieCell)!
             vc.movie = filteredMoviesArray[indexPath.row]
+            let cell = tableView.cellForRow(at: indexPath) as! MovieCell
+            cell.tare.isHidden = false
         }
         if segue.identifier == "collectionViewSegue" {
             let vc = segue.destination as! MovieDetailViewController
@@ -190,6 +192,8 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
         cell.movieTitle.sizeToFit()
         cell.movieDescription.text = movie.description as? String
         cell.movieDescription.sizeToFit()
+        cell.tare.isHidden = true
+
         
         if let posterPath = movie.posterPath {
             

@@ -30,12 +30,16 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ldt-jq-e81" id="Y9F-mN-Xdx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ticket" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-Ey-3eu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150.5"/>
+                                                    <rect key="frame" x="-0.5" y="0.0" width="414.5" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tare" translatesAutoresizingMaskIntoConstraints="NO" id="3hM-J8-tYs">
+                                                    <rect key="frame" x="179" y="0.0" width="67" height="150"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXj-RA-pyh">
                                                     <rect key="frame" x="49" y="21" width="89" height="109"/>
@@ -49,7 +53,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7H1-jH-936">
-                                                    <rect key="frame" x="146" y="21" width="246" height="21"/>
+                                                    <rect key="frame" x="146" y="21" width="245" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
@@ -67,6 +71,7 @@
                                             <outlet property="movieDescription" destination="uyK-OW-KuA" id="sTW-7m-lbG"/>
                                             <outlet property="movieTitle" destination="7H1-jH-936" id="S19-Yw-Flc"/>
                                             <outlet property="posterImage" destination="iXj-RA-pyh" id="ewu-wJ-haw"/>
+                                            <outlet property="tare" destination="3hM-J8-tYs" id="j3a-Y0-ZQs"/>
                                             <segue destination="JI0-Ts-crW" kind="push" identifier="tableViewSegue" id="KDI-ZA-Op8"/>
                                         </connections>
                                     </tableViewCell>
@@ -169,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAp-1j-ph4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1920.8" y="91.304347826086968"/>
+            <point key="canvasLocation" x="1920.289855072464" y="91.304347826086968"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="wgM-jv-uoG">
@@ -260,6 +265,7 @@
     </scenes>
     <resources>
         <image name="Error-104" width="104" height="104"/>
+        <image name="tare" width="708" height="1024"/>
         <image name="ticket" width="329" height="153"/>
     </resources>
     <inferredMetricsTieBreakers>

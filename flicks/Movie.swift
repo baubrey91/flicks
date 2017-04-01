@@ -9,10 +9,10 @@
 import Foundation
 
 class Movie {
-    var title : String
-    var description: String
-    var posterPath : String?
-    var filmDate : String
+    var title :         String
+    var description:    String
+    var posterPath :    String?
+    var filmDate :      String
     
     init(dict: NSDictionary){
         self.title          = dict["title"] as! String
