@@ -24,11 +24,13 @@ Personal:
  * [x] Optional: Clear ticket tare by swiping left on cell.
  * [x] Optional: Embedded serch bar in Navigation Controller.
 
- 
+How to use:
+
+Click on a ticket to see the poster and description. When coming back there will be a tear on the ticker to show you have looked at it. Swipe left on the cell to remove the tear. Search for a movie in the top. Switch from cells to grids on the bottom, and switch between now playing and top rated movies on the bottom tabs.
  
 Notes/Problems:
 
-Had a lot of layout issues.
+Had a lot of layout issues. Enjoyed adding my movie ticket tear feature/ cookie trail.
 
 Walkthrough of all user stories:
 
@@ -36,4 +38,10 @@ Walkthrough of all user stories:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
+Credits:
 Icons provided by https://icons8.com
+Frameworks used include
+  1. AFNetworking
+  2. KRProgressHUD
+Movies from TheMovieDB
+
