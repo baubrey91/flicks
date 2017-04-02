@@ -32,7 +32,7 @@ Had a lot of layout issues.
 
 Walkthrough of all user stories:
 
-http://gph.is/2oojEdi
+<iframe src="//giphy.com/embed/l4FGDhARDplBLI9pu" width="256.9014084507042" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/l4FGDhARDplBLI9pu">via GIPHY</a></p>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
