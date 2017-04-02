@@ -30,14 +30,14 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ldt-jq-e81" id="Y9F-mN-Xdx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ticket" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-Ey-3eu">
                                                     <rect key="frame" x="-0.5" y="0.0" width="414.5" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="newTare" translatesAutoresizingMaskIntoConstraints="NO" id="3hM-J8-tYs">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="newTear" translatesAutoresizingMaskIntoConstraints="NO" id="3hM-J8-tYs">
                                                     <rect key="frame" x="191" y="0.0" width="28" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -71,7 +71,7 @@
                                             <outlet property="movieDescription" destination="uyK-OW-KuA" id="sTW-7m-lbG"/>
                                             <outlet property="movieTitle" destination="7H1-jH-936" id="S19-Yw-Flc"/>
                                             <outlet property="posterImage" destination="iXj-RA-pyh" id="ewu-wJ-haw"/>
-                                            <outlet property="tare" destination="3hM-J8-tYs" id="j3a-Y0-ZQs"/>
+                                            <outlet property="tear" destination="3hM-J8-tYs" id="KgF-FB-So9"/>
                                             <segue destination="JI0-Ts-crW" kind="push" identifier="tableViewSegue" id="KDI-ZA-Op8"/>
                                         </connections>
                                     </tableViewCell>
@@ -265,7 +265,7 @@
     </scenes>
     <resources>
         <image name="Error-104" width="104" height="104"/>
-        <image name="newTare" width="260" height="1424"/>
+        <image name="newTear" width="260" height="1424"/>
         <image name="ticket" width="329" height="153"/>
     </resources>
     <inferredMetricsTieBreakers>

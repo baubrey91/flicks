@@ -75,7 +75,7 @@ class MoviesTableViewController: UIViewController {
                 print(error)
                 self.networkErrorView.isHidden = false
                 refreshControl.endRefreshing()
-
+                KRProgressHUD.dismiss()
             }
             if let data = dataOrNil {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary, let payLoad = responseDictionary["results"] as? [NSDictionary]
@@ -98,7 +98,7 @@ class MoviesTableViewController: UIViewController {
         
     }
     
-    func callService() {
+   fileprivate func callService() {
     
         networkErrorView.isHidden = true
         
@@ -114,6 +114,7 @@ class MoviesTableViewController: UIViewController {
             if error != nil {
                 print(error)
                 self.networkErrorView.isHidden = false
+                KRProgressHUD.dismiss()
             }
             KRProgressHUD.show()
             if let data = dataOrNil {
@@ -143,7 +144,7 @@ class MoviesTableViewController: UIViewController {
             let indexPath = tableView.indexPath(for: sender as! MovieCell)!
             vc.movie = filteredMoviesArray[indexPath.row]
             let cell = tableView.cellForRow(at: indexPath) as! MovieCell
-            cell.tare.isHidden = false
+            cell.tear.isHidden = false
             filteredMoviesArray[indexPath.row].isTorn = true
             
         }
@@ -199,7 +200,7 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
         cell.movieTitle.sizeToFit()
         cell.movieDescription.text = movie.description as? String
         cell.movieDescription.sizeToFit()
-        cell.tare.isHidden = !movie.isTorn
+        cell.tear.isHidden = !movie.isTorn
         
         if let posterPath = movie.posterPath {
             
