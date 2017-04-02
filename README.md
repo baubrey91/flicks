@@ -38,7 +38,8 @@ Walkthrough of all user stories:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-Credits:
+Credits: 
+
 Icons provided by https://icons8.com
 
 Movies from TheMovieDB
