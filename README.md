@@ -2,7 +2,7 @@
 
 This is an iOS demo application for displaying the latest box office movies using the [themoviedb API](https://developers.themoviedb.org/3/getting-started).
 
-Time spent: 10 hours spent in total
+Time spent: 14 hours spent in total
 
 Completed user stories:
 
@@ -15,19 +15,37 @@ Completed user stories:
  * [x] Optional: Implement a UISegmentedControl to switch between a list view and a grid view.
  * [x] Optional: Add a search bar.
  * [x] Optional: All images fade in as they are loading.
- * [ ] Optional: For the large poster, load the low-res image first and switch to high-res when complete.
- * [ ] Optional: Customize the highlight and selection effect of the cell.
- * [ ] Optional: Customize the navigation bar.
+ * [x] Optional: For the large poster, load the low-res image first and switch to high-res when complete.
+ * [x] Optional: Customize the highlight and selection effect of the cell. (Done in personal options with different approach)
+ * [x] Optional: Customize the navigation bar.(embedded search bar and changed tint color)
+  
+Personal:
+ * [x] Optional: Custom ticket style cell, with tare to show which movies have been selected.
+ * [x] Optional: Clear ticket tare by swiping left on cell.
+ * [x] Optional: Embedded serch bar in Navigation Controller.
 
+How to use:
+
+Click on a ticket to see the poster and description. When coming back there will be a tear on the ticker to show you have looked at it. Swipe left on the cell to remove the tear. Search for a movie in the top. Switch from cells to grids on the bottom, and switch between now playing and top rated movies on the bottom tabs.
  
-Notes:
+Notes/Problems:
 
-Had a lot of layout issues.
+Had a lot of layout issues. Enjoyed adding my movie ticket tear feature/ cookie trail.
 
 Walkthrough of all user stories:
 
-![Video Walkthrough](anim_rotten_tomatoes.gif)
+[![flicks.gif](https://s26.postimg.org/5zri28ho9/flicks.gif)](https://postimg.org/image/5a8ppvh4l/)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
+Credits: 
+
 Icons provided by https://icons8.com
+
+Movies from TheMovieDB
+
+Frameworks used include
+  1. AFNetworking
+  2. KRProgressHUD
+
+
