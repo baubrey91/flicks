@@ -40,7 +40,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Credits:
 Icons provided by https://icons8.com
+
 Movies from TheMovieDB
+
 Frameworks used include
   1. AFNetworking
   2. KRProgressHUD
