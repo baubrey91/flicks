@@ -38,13 +38,15 @@ class MoviesTableViewController: UIViewController {
         searchBar.delegate = self
         searchBar.resignFirstResponder()
         searchBar.keyboardType = UIKeyboardType.alphabet
+        
+        let refreshControlTable = UIRefreshControl()
+        let refreshControlCollection = UIRefreshControl()
 
+        refreshControlTable.addTarget(self, action: #selector(callService(refreshControl:)), for: UIControlEvents.valueChanged)
+        refreshControlCollection.addTarget(self, action: #selector(callService(refreshControl:)), for: UIControlEvents.valueChanged)
         
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(callService(refreshControl:)), for: UIControlEvents.valueChanged)
-        
-        tableView.insertSubview(refreshControl, at: 0)
-        collectionView.insertSubview(refreshControl, at: 0)
+        tableView.insertSubview(refreshControlTable, at: 0)
+        collectionView.insertSubview(refreshControlCollection, at: 0)
         
         callService()
         filteredMoviesArray = moviesArray
@@ -54,6 +56,7 @@ class MoviesTableViewController: UIViewController {
     
     func callService(refreshControl: UIRefreshControl) {
         
+        moviesArray = []
         networkErrorView.isHidden = true
 
         let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
@@ -82,6 +85,7 @@ class MoviesTableViewController: UIViewController {
                         let mm = Movie(dict: m)
                         self.moviesArray.append(mm)
                     }
+                    self.filteredMoviesArray = self.moviesArray
                     self.collectionView.reloadData()
                     self.tableView.reloadData()
                     refreshControl.endRefreshing()
@@ -140,6 +144,8 @@ class MoviesTableViewController: UIViewController {
             vc.movie = filteredMoviesArray[indexPath.row]
             let cell = tableView.cellForRow(at: indexPath) as! MovieCell
             cell.tare.isHidden = false
+            filteredMoviesArray[indexPath.row].isTorn = true
+            
         }
         if segue.identifier == "collectionViewSegue" {
             let vc = segue.destination as! MovieDetailViewController
@@ -166,6 +172,7 @@ extension MoviesTableViewController: UISearchBarDelegate {
                 filteredMoviesArray.append(movie)
             }
         }
+        
         if searchText == "" {
             filteredMoviesArray = moviesArray
             perform(#selector(hideKeyboardWithSearchBar(bar:)), with:searchBar, afterDelay:0)
@@ -192,8 +199,7 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
         cell.movieTitle.sizeToFit()
         cell.movieDescription.text = movie.description as? String
         cell.movieDescription.sizeToFit()
-        cell.tare.isHidden = true
-
+        cell.tare.isHidden = !movie.isTorn
         
         if let posterPath = movie.posterPath {
             
@@ -203,6 +209,17 @@ extension MoviesTableViewController: UITableViewDelegate, UITableViewDataSource 
             }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            filteredMoviesArray[indexPath.row].isTorn = false
+            tableView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Clear"
     }
 }
 

@@ -30,15 +30,15 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ldt-jq-e81" id="Y9F-mN-Xdx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ticket" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-Ey-3eu">
                                                     <rect key="frame" x="-0.5" y="0.0" width="414.5" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tare" translatesAutoresizingMaskIntoConstraints="NO" id="3hM-J8-tYs">
-                                                    <rect key="frame" x="179" y="0.0" width="67" height="150"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="newTare" translatesAutoresizingMaskIntoConstraints="NO" id="3hM-J8-tYs">
+                                                    <rect key="frame" x="191" y="0.0" width="28" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXj-RA-pyh">
@@ -265,7 +265,7 @@
     </scenes>
     <resources>
         <image name="Error-104" width="104" height="104"/>
-        <image name="tare" width="708" height="1024"/>
+        <image name="newTare" width="260" height="1424"/>
         <image name="ticket" width="329" height="153"/>
     </resources>
     <inferredMetricsTieBreakers>
