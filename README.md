@@ -32,7 +32,7 @@ Had a lot of layout issues.
 
 Walkthrough of all user stories:
 
-![Video Walkthrough](anim_rotten_tomatoes.gif)
+http://gph.is/2oojEdi
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
